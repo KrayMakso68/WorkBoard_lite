@@ -1,0 +1,49 @@
+<script setup lang="ts">
+import {ref} from "vue";
+
+const AddExpanded = ref<boolean>(false)
+const AddText = ref<string>('')
+
+const onSubmit = () => {
+  AddExpanded.value = false
+  AddText.value = ''
+}
+</script>
+
+<template>
+  <q-expansion-item
+    class="list-item overflow-hidden q-mx-sm q-mt-lg"
+    v-model="AddExpanded"
+  >
+
+    <template v-slot:header>
+      <q-item-section avatar>
+        <q-avatar size="md">
+          +
+        </q-avatar>
+      </q-item-section>
+      <q-item-section class="text-subtitle2">
+        <q-item-label>Add Board</q-item-label>
+      </q-item-section>
+    </template>
+
+
+    <q-form
+      class="add-item-content-bg q-px-sm q-mb-md"
+    >
+      <q-input outlined v-model="AddText" placeholder="Board Name" dense>
+        <template v-slot:after>
+          <q-btn square dense color="positive" icon="add" @click='onSubmit'/>
+        </template>
+        <template v-slot:append>
+          <q-icon name="close" @click="AddText = ''" class="cursor-pointer" />
+        </template>
+      </q-input>
+    </q-form>
+  </q-expansion-item>
+
+</template>
+
+<style scoped>
+
+</style>

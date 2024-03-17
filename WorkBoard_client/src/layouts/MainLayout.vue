@@ -1,15 +1,14 @@
 <template>
-  <q-layout view="lHh Lpr fFf">
+  <q-layout view="hHh LpR fFf">
 
-    <q-header elevated class="bg-primary text-white">
+    <q-header elevated class="header-bg text-grey-9">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          Title
+        <q-btn dense flat round icon="dashboard" @click="toggleLeftDrawer" class="q-mr-xl"/>
+        <q-avatar square >
+          <img width="64" height="64" src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/64/external-board-design-thinking-flatart-icons-flat-flatarticons.png" alt="external-board-design-thinking-flatart-icons-flat-flatarticons"/>
+        </q-avatar>
+        <q-toolbar-title class="text-weight-bold">
+          WorkBoard
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -18,21 +17,29 @@
       show-if-above
       v-model="leftDrawerOpen"
       side="left"
-      bordered
+      elevated
+      class="left-drawer-bg"
     >
-      <q-list>
-        <q-item-label
-          header
+      <q-scroll-area class="fit q-pa-sm">
+        <q-list
+          class="q-gutter-xs"
         >
-          Essential Links
-        </q-item-label>
+          <q-item-label
+            header
+            class="text-grey-9 text-weight-bold text-body1"
+          >
+            Your Boards
+          </q-item-label>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+          <BoardLink
+            v-for="link in BoardLinks"
+            :key="link.title"
+            v-bind="link"
+          />
+          <AddBoardItem
+          />
+        </q-list>
+      </q-scroll-area>
     </q-drawer>
 
     <q-page-container>
@@ -44,48 +51,42 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import EssentialLink, { EssentialLinkProps } from 'components/EssentialLink.vue';
+import BoardLink, { BoardLinkProps } from 'components/BoardLink.vue';
+import AddBoardItem from "components/AddBoardItem.vue";
 
-const essentialLinks: EssentialLinkProps[] = [
+const BoardLinks: BoardLinkProps[] = [
   {
     title: 'Docs',
-    caption: 'quasar.dev',
     icon: 'school',
     link: 'https://quasar.dev'
   },
   {
     title: 'Github',
-    caption: 'github.com/quasarframework',
     icon: 'code',
     link: 'https://github.com/quasarframework'
   },
   {
     title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
     icon: 'chat',
     link: 'https://chat.quasar.dev'
   },
   {
     title: 'Forum',
-    caption: 'forum.quasar.dev',
     icon: 'record_voice_over',
     link: 'https://forum.quasar.dev'
   },
   {
     title: 'Twitter',
-    caption: '@quasarframework',
     icon: 'rss_feed',
     link: 'https://twitter.quasar.dev'
   },
   {
     title: 'Facebook',
-    caption: '@QuasarFramework',
     icon: 'public',
     link: 'https://facebook.quasar.dev'
   },
   {
     title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
   }

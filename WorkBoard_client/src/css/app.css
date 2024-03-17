@@ -1,1 +1,32 @@
-/* app global css */
+/*Main block*/
+.main-content-bg {
+  background-blend-mode: screen;
+  background: -webkit-linear-gradient(90deg, #7fc8fb,#a0d5ff,#ffe6be,#ffc19c,#ff8685);
+  background: linear-gradient(90deg, #7fc8fb,#a0d5ff,#ffe6be,#ffc19c,#ff8685);
+}
+.main-content-header {
+  backdrop-filter: blur(8px); background: rgba(255,255,255,0.25);
+}
+
+/*Header*/
+.header-bg {
+  background: #dcbddf;
+}
+
+/*Left-side Drawer*/
+.left-drawer-bg{
+  background: #9a99e1;
+}
+.list-item {
+  background: rgba(137, 136, 201, 0.53);
+  border-radius: 10px;
+  color: #020e18;
+}
+.list-item-active {
+  background: rgba(0, 255, 173, 0.7);
+  color: #4A21C8;
+}
+.add-item-content-bg {
+  background: rgba(0, 0, 0, 0);
+}
+
