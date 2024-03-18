@@ -4,10 +4,14 @@ import {ref} from "vue";
 const AddExpanded = ref<boolean>(false)
 const AddText = ref<string>('')
 
-const onSubmit = () => {
-  AddExpanded.value = false
+const resetText = () => {
   AddText.value = ''
 }
+const onSubmit = () => {
+  AddExpanded.value = false
+  resetText()
+}
+
 </script>
 
 <template>
@@ -33,10 +37,10 @@ const onSubmit = () => {
     >
       <q-input outlined v-model="AddText" placeholder="Board Name" dense>
         <template v-slot:after>
-          <q-btn square dense color="positive" icon="add" @click='onSubmit'/>
+          <q-btn square dense color="positive" icon="add" @click='onSubmit' style="border-radius: 5px"/>
         </template>
         <template v-slot:append>
-          <q-icon name="close" @click="AddText = ''" class="cursor-pointer" />
+          <q-icon name="close" @click="resetText" class="cursor-pointer" />
         </template>
       </q-input>
     </q-form>

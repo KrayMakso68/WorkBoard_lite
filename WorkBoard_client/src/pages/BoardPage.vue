@@ -15,50 +15,41 @@
       :horizontal-thumb-style="horizontalThumbStyle"
       :horizontal-bar-style="horizontalBarStyle"
     >
-      <div class="row items-start no-wrap q-pa-sm q-gutter-sm">
-        <q-card class="my-card"
+      <div class="row items-start no-wrap q-pa-sm q-gutter-md">
+        <q-card class="bg-grey-2 q-pa-sm"
                 flat
                 bordered
-                v-for="n in 20"
+                v-for="n in 2"
                 :key="n"
-                style="width: 300px"
+                style="width: 250px; min-height: 50px"
         >
-          <img src="https://cdn.quasar.dev/img/parallax2.jpg">
+          <q-card-section class="q-pa-none">
+            <div class="row items-center no-wrap">
+              <div class="col">
+                <div class="text-body1 text-weight-bold text-grey-8">my new List</div>
+              </div>
 
-          <q-list>
-            <q-item clickable>
-              <q-item-section avatar>
-                <q-icon color="primary" name="local_bar" />
-              </q-item-section>
+              <div class="col-auto">
+                <q-btn color="grey-7" round flat dense icon="more_vert"/>
+              </div>
+            </div>
+          </q-card-section>
+          <q-card-section class="q-pa-none">
+            <div class="column q-gutter-sm">
+              <div class="col bg-white q-py-lg">
+                1 of 3
+              </div>
+              <div class="col bg-white q-py-lg">
+                1 of 3
+              </div>
+              <div class="col bg-white q-py-lg">
+                1 of 3
+              </div>
+            </div>
+          </q-card-section>
 
-              <q-item-section>
-                <q-item-label>Bar XYZ</q-item-label>
-                <q-item-label caption>Have a drink.</q-item-label>
-              </q-item-section>
-            </q-item>
 
-            <q-item clickable>
-              <q-item-section avatar>
-                <q-icon color="red" name="local_gas_station" />
-              </q-item-section>
 
-              <q-item-section>
-                <q-item-label>Gas Station</q-item-label>
-                <q-item-label caption>Fill your gas tank.</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable>
-              <q-item-section avatar>
-                <q-icon color="amber" name="local_movies" />
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label>Cinema XYZ</q-item-label>
-                <q-item-label caption>Watch a movie.</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
         </q-card>
       </div>
     </q-scroll-area>
