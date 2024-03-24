@@ -31,13 +31,23 @@
             Your Boards
           </q-item-label>
 
-          <BoardLink
-            v-for="link in BoardLinks"
-            :key="link.title"
-            v-bind="link"
-          />
-          <AddBoardItem
-          />
+
+          <transition-group name="board-list">
+            <draggable
+              class="q-ma-none q-gutter-xs"
+              item-key="id"
+              :list="BoardLinks"
+              v-bind="dragOptions"
+            >
+              <template #item="{ element }">
+                <BoardLink
+                  v-bind="element"
+                />
+              </template>
+            </draggable>
+          </transition-group>
+
+          <AddBoardItem/>
         </q-list>
       </q-scroll-area>
     </q-drawer>
@@ -53,48 +63,79 @@
 import { ref } from 'vue';
 import BoardLink, { BoardLinkProps } from 'components/BoardLink.vue';
 import AddBoardItem from "components/AddBoardItem.vue";
+import draggable from 'vuedraggable';
 
-const BoardLinks: BoardLinkProps[] = [
+const BoardLinks = ref<BoardLinkProps[]>([
   {
+    id: 1,
     title: 'Docs',
     icon: 'school',
     link: 'https://quasar.dev'
   },
   {
+    id: 2,
     title: 'Github',
     icon: 'code',
     link: 'https://github.com/quasarframework'
   },
   {
+    id: 3,
     title: 'Discord Chat Channel',
     icon: 'chat',
     link: 'https://chat.quasar.dev'
   },
   {
+    id: 4,
     title: 'Forum',
     icon: 'record_voice_over',
     link: 'https://forum.quasar.dev'
   },
   {
+    id: 5,
     title: 'Twitter',
     icon: 'rss_feed',
     link: 'https://twitter.quasar.dev'
   },
   {
+    id: 6,
     title: 'Facebook',
     icon: 'public',
     link: 'https://facebook.quasar.dev'
   },
   {
+    id: 7,
     title: 'Quasar Awesome',
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
   }
-];
+]);
 
 const leftDrawerOpen = ref(false)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
+
+const dragOptions = ref({
+  animation: 200,
+  group: 'description',
+  disabled: false,
+  ghostClass: 'ghost',
+});
 </script>
+
+<style>
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+.board-list-enter-active,
+.board-list-leave-active {
+  transition: all 0.5s ease;
+}
+.board-list-enter-from,
+.board-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+</style>

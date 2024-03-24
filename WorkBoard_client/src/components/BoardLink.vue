@@ -25,6 +25,7 @@
 
 <script setup lang="ts">
 export interface BoardLinkProps {
+  id: number;
   title: string;
   link?: string;
   icon?: string;
